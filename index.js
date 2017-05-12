@@ -22,10 +22,10 @@ client.Dispatcher.on("MESSAGE_CREATE", e => {
     e.message.channel.sendMessage("pong");
 
   if (e.message.content == "transform bulbasaur")
-	client.User.setAvatar(fs.readFileSync("/public/dd_bulbasaur.jpg");
+	client.User.setAvatar(fs.readFileSync("/public/dd_bulbasaur.jpg"));
 
   if (e.message.content == "transform ditto")
-	client.User.setAvatar(fs.readFileSync("/public/dd_logo.jpg");
+	client.User.setAvatar(fs.readFileSync("/public/dd_logo.jpg"));
 });
 
 //
