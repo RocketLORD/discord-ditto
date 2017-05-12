@@ -1,21 +1,3 @@
-// DISCORD
-
-var Discordie = require("discordie");
-var client = new Discordie();
-
-client.connect({
-  token: process.env.BOT_SECRET
-});
-
-client.Dispatcher.on("GATEWAY_READY", e => {
-  console.log("Connected as: " + client.User.username);
-});
-
-client.Dispatcher.on("MESSAGE_CREATE", e => {
-  if (e.message.content == "ping")
-    e.message.channel.sendMessage("pong");
-});
-
 // WEBPAGE
 
 var express = require('express');
@@ -34,4 +16,22 @@ app.get('/', function(request, response) {
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
+});
+
+// DISCORD
+
+var Discordie = require("discordie");
+var client = new Discordie({autoReconnect: true});
+
+client.connect({
+  token: process.env.BOT_SECRET
+});
+
+client.Dispatcher.on("GATEWAY_READY", e => {
+  console.log("Connected as: " + client.User.username);
+});
+
+client.Dispatcher.on("MESSAGE_CREATE", e => {
+  if (e.message.content == "ping")
+    e.message.channel.sendMessage("pong");
 });
