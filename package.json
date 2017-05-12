@@ -1,0 +1,22 @@
+{
+  "name": "DiscordDitto",
+  "version": "0.0.1",
+  "description": "A wild Ditto appeared!",
+  "engines": {
+    "node": "6.10.2",
+	"npm": "3.10.10"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+	"discordie": "0.11.0",
+    "ejs": "2.5.6",
+    "express": "4.15.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshuareade/discord-ditto"
+  }
+}
