@@ -17,11 +17,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/joshuareade/discord-ditto"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "MIT"
+  }
 }
