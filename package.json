@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A wild Ditto appeared!",
   "engines": {
-    "node": "6.10.2"
+    "node": "6.10.2",
+	"npm": "3.10.10"
   },
   "main": "index.js",
   "scripts": {
