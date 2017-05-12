@@ -25,7 +25,7 @@ client.Dispatcher.on("MESSAGE_CREATE", e => {
 	client.User.setAvatar(fs.readFileSync("/public/dd_bulbasaur.jpg");
 
   if (e.message.content == "transform ditto")
-	client.User.setAvatar(fs.readFileSync("/public/dd_bulbasaur.jpg");
+	client.User.setAvatar(fs.readFileSync("/public/dd_logo.jpg");
 });
 
 //
