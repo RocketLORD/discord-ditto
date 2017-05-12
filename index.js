@@ -44,8 +44,14 @@ client.Dispatcher.on("MESSAGE_CREATE", e => {
     e.message.channel.sendMessage("pong");
 
   if (e.message.content == "transform bulbasaur")
+  {
+	e.message.channel.sendMessage("transforming...");
 	client.User.setAvatar(fs.readFileSync(__dirname + "/public/dd_bulbasaur.jpg"));
+  }
 
   if (e.message.content == "transform ditto")
+  {
+	e.message.channel.sendMessage("transforming...");
 	client.User.setAvatar(fs.readFileSync(__dirname + "/public/dd_ditto.jpg"));
+  }
 });
