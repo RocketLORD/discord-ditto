@@ -1,4 +1,3 @@
-
 // INIT
 var Discordie = require("discordie");
 var client = new Discordie({autoReconnect: true});
@@ -27,6 +26,12 @@ app.listen(app.get('port'), function() {
 });
 
 
+//
+// WEB->DISCORD
+//
+function disconnect() {
+    client.disconnect();
+}
 
 //
 // DISCORD
@@ -40,18 +45,39 @@ client.Dispatcher.on("GATEWAY_READY", e => {
 });
 
 client.Dispatcher.on("MESSAGE_CREATE", e => {
-  if (e.message.content == "ping")
-    e.message.channel.sendMessage("pong");
+	var args = e.message.split(" ");
+	
+	//	PING
+	if(args[0].toLocaleLowerCase() == "ping") e.message.channel.sendMessage("pong");
 
-  if (e.message.content == "transform bulbasaur")
-  {
-	e.message.channel.sendMessage("transforming...");
-	client.User.setAvatar(fs.readFileSync(__dirname + "/public/dd_bulbasaur.jpg"));
-  }
-
-  if (e.message.content == "transform ditto")
-  {
-	e.message.channel.sendMessage("transforming...");
-	client.User.setAvatar(fs.readFileSync(__dirname + "/public/dd_ditto.jpg"));
-  }
+	//	TRANSFORM
+	
+	if(args[0].toLocaleLowerCase() == "transform") {
+		var success = false;
+		
+		switch(args[1].toLocaleLowerCase()) {
+			case "bulbasaur":
+				client.User.setAvatar(fs.readFileSync(__dirname + "/public/dd_bulbasaur.jpg"));
+				success = true;
+				break;
+			case "ditto":
+				client.User.setAvatar(fs.readFileSync(__dirname + "/public/dd_ditto.jpg"));
+				success = true;
+				break;
+			default:
+				break;
+		}
+		
+		if(success) {
+			e.message.channel.sendMessage("is transforming...");
+		} else {
+			e.message.channel.sendMessage("hasn't learnt that form...");
+		}
+	}
+    
+    // DISCONNECT
+    
+    if(args[0].toLocaleLowerCase() == "disconnect") {
+        client.disconnect();
+    }
 });
