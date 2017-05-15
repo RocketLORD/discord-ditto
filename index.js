@@ -7,6 +7,8 @@ var fs = require('file-system');
 var express = require('express');
 var app = express();
 
+var key = "~";
+
 //
 // WEBPAGE
 //
@@ -45,17 +47,37 @@ client.Dispatcher.on("GATEWAY_READY", e => {
 });
 
 client.Dispatcher.on("MESSAGE_CREATE", e => {
-	var args = e.message.split(" ");
-	
+    if(e.message.author == client.user.id) return;
+    
+    var msg = e.message.content;
+    if(msg.length == 0) return;
+    
+    var keyCheck = msg.slice(0, key.length);
+    //console.log("key?:" + keyCheck);
+    if(keyCheck != key) return;
+    
+    msg = msg.slice(key.length, msg.length);
+	var args = msg.split(" ");
+    //console.log("args0?:" + args[0]);
+    
 	//	PING
-	if(args[0].toLocaleLowerCase() == "ping") e.message.channel.sendMessage("pong");
+	if(args[0].toLocaleLowerCase() == "ping") {
+        console.log("replying to ping...");
+        e.message.channel.sendMessage("pong");
+    }
 
 	//	TRANSFORM
-	
 	if(args[0].toLocaleLowerCase() == "transform") {
 		var success = false;
 		
-		switch(args[1].toLocaleLowerCase()) {
+        if(args.length < 2){
+            e.message.channel.sendMessage("is confused?");
+            return;
+        }
+        
+        var transformTarget = args[1].toLocaleLowerCase();
+        
+		switch(transformTarget) {
 			case "bulbasaur":
 				client.User.setAvatar(fs.readFileSync(__dirname + "/public/dd_bulbasaur.jpg"));
 				success = true;
@@ -76,7 +98,6 @@ client.Dispatcher.on("MESSAGE_CREATE", e => {
 	}
     
     // DISCONNECT
-    
     if(args[0].toLocaleLowerCase() == "disconnect") {
         client.disconnect();
     }
