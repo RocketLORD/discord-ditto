@@ -47,7 +47,7 @@ client.Dispatcher.on("GATEWAY_READY", e => {
 });
 
 client.Dispatcher.on("MESSAGE_CREATE", e => {
-    if(e.message.author == client.user.id) return;
+    if(e.message.author == client.User.id) return;
     
     var msg = e.message.content;
     if(msg.length == 0) return;
