@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <% include ../partials/header.ejs %>
-</head>
+    <head>
+        <% include ../partials/header.ejs %>
+        
+        <script>
+        var updateDitto = async function () {
+            let response = await fetch('/transform', {method: 'get'});
+            let responseJson = await response.json();
+            let targetPokemon = responseJson.pokemon;
+            
+            if(targetPokemon == "bulbasaur") {
+                document.getElementById('dittoFace').src = "dd_ph_bulbasaur.png";
+                document.getElementById('background').style.backgroundColor = "#5bd49e";
+            } else if(targetPokemon == "charmander") {
+                document.getElementById('dittoFace').src = "dd_ph_charmander.png";
+                document.getElementById('background').style.backgroundColor = "#d2894b";
+            } else if(targetPokemon == "squirtle") {
+                document.getElementById('dittoFace').src = "dd_ph_squirtle.png";
+                document.getElementById('bcakground').style.backgroundColor = "#d2894b";
+            } else {
+                document.getElementById('dittoFace').src = "dd_ph_ditto.png";
+                document.getElementById('background').style.backgroundColor = "#d084b5";
+            }
+        }
+        
+        setInterval(updateDitto, 1000);
+        </script>
+    </head>
 
-<body>
- <img class="lock" src="dd_ditto.jpg"/>
-</body>
+    <body id="background">
+        <img id="dittoFace" class="lock" src="dd_ph_ditto.png"/>
+        <!--
+        <a href="connect" target="_self">Connect</a>
+        <a href="disconnect" target="_self">Disconnect</a>
+        -->
+    </body>
 </html>

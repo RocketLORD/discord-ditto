@@ -16,7 +16,7 @@ body {
 	background-color: #d084b5;
 }
 
-img {
+#dittoFace {
 	position: absolute;
 	width: 256px;
 	height: 256px;
