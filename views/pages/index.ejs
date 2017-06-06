@@ -25,6 +25,9 @@
         }
         
         setInterval(updateDitto, 1000);
+        setInterval(function() {
+            http.get("http://discord-ditto.herokuapp.com");
+        }, 300000);
         </script>
     </head>
 
